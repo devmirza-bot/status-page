@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Status page built in pure js, html and css">
+    <meta name="keywords" content="HTML, CSS, JavaScript, status-page, status, page">
+    <meta name="author" content="DevMirza">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./main.js"></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/dompurify@2.3.5/dist/purify.min.js"
+    ></script>
+    <script async src="https://arc.io/widget.min.js#TrZLLkLQ"></script>
+    <title>Status Page</title>
+  </head>
+  <body>
+    <div class="pageContainer">
+      <div class="headline">
+        <img src="logo.svg" alt="Logo" width="200px" />
+        <span> System Status </span>
+      </div>
+      <div id="reports" class="reportContainer"></div>
+      <div id="incidents" class="incidentsContainer">
+        <div class="statusContainer">
+          <div class="statusHeader">
+            <h3 class="incidentReportsHeader">Incident Reports</h3>
+          </div>
+          <h4>Active Reports</h4>
+          <div id="activeIncidentReports">
+            None recorded
+          </div>
+          <hr />
+          <h4>Past Reports</h4>
+          <div id="pastIncidentReports">
+            None recorded
+          </div>
+        </div>
+      </div>
+      <div id="tooltip" class="tooltip" style="opacity: 0">
+        <div id="tooltipArrow" class="tooltipArrow"></div>
+        <div id="tooltipDateTime" class="tooltipDateTime"></div>
+        <div id="tooltipStatus" class="tooltipStatus"></div>
+        <hr />
+        <div id="tooltipDescription" class="tooltipDescription"></div>
+      </div>
+      <div id="templates" style="display: none">
+        <div
+          id="statusSquareTemplate"
+          class="statusSquare $color"
+          data-status="$color"
+        ></div>
+        <div id="statusLineTemplate" class="statusLine"></div>
+        <div
+          id="statusStreamContainerTemplate"
+          class="statusStreamContainer"
+        ></div>
+        <div id="statusContainerTemplate" class="statusContainer">
+          <div class="statusHeader">
+            <h6 class="statusTitle">$title&nbsp;</h6>
+            <div class="$color statusHeadline">$status</div>
+          </div>
+          <div class="statusSubtitle">
+            <div class="sectionUrl"><a href="$url">$url</a></div>
+            <div class="statusUptime">$upTime in the last 30 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    genAllReports();
+    window.addEventListener("load", () => {
+      genIncidentReport();
+    });
+  </script>
+</html>
